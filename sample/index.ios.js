@@ -3,7 +3,8 @@
  * https://github.com/facebook/react-native
  */
 'use strict';
-var SearchPage = require('./SearchPage');
+var SearchPage = require('./SearchPage/SearchPage');
+var Game = require('./Game2048/Game2048');
 
 var React = require('react-native');
 var {
@@ -21,7 +22,7 @@ var styles = React.StyleSheet.create({
     margin: 80
   },
   container: {
-  flex: 1
+    flex: 1
   }
 });
 

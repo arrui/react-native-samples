@@ -10,7 +10,8 @@ var {
   TouchableHighlight,
   ActivityIndicatorIOS,
   Image,
-  Component
+  Component,
+  AppRegistry
 } = React;
 
 var styles = StyleSheet.create({
@@ -182,5 +183,7 @@ class SearchPage extends Component {
     );
   }
 }
+
+AppRegistry.registerComponent('SearchPage', () => SearchPage);
 
 module.exports = SearchPage;

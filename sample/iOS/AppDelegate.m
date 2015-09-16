@@ -32,7 +32,7 @@
    */
 
   jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
-//  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/Game2048.includeRequire.runModule.bundle"];
+
 
   /**
    * OPTION 2
@@ -44,14 +44,12 @@
    * see http://facebook.github.io/react-native/docs/runningondevice.html
    */
 
-//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"sample"
+                                               initialProperties:nil
                                                    launchOptions:launchOptions];
-//    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-//                                                        moduleName:@"Game2048"
-//                                                     launchOptions:launchOptions];
+
 
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

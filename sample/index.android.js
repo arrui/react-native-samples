@@ -5,113 +5,69 @@
 'use strict';
 
 var React = require('react-native');
-
-var MOCKED_MOVIES_DATA = [
-  {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
-];
-
-var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+var Game = require('./Game2048/Game2048');
 
 var {
   AppRegistry,
-  Image,
   StyleSheet,
-  ListView,
   Text,
   View,
+  Navigator,
 } = React;
 
-var sample = React.createClass({
-  getInitialState: function() {
-      return {
-        dataSource: new ListView.DataSource({
-          rowHasChanged: (row1, row2) => row1 !== row2,
-        }),
-        loaded: false,
-      };
-    },
-  componentDidMount: function() {
-    this.fetchData();
-  },
-  fetchData: function() {
-    fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
-          loaded: true,
-        });
-      })
-      .done();
-    },
-   render: function() {
-     if (!this.state.loaded) {
-       return this.renderLoadingView();
-     }
-
-     return (
-       <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderMovie}
-        style={styles.listView}/>
-
-     );
-   },
-
-   renderLoadingView: function() {
-     return (
-       <View style={styles.container}>
-         <Text>
-           Loading movies...
-         </Text>
-       </View>
-     );
-   },
-
-   renderMovie: function(movie) {
-     return (
-       <View style={styles.container}>
-         <Image
-           source={{uri: movie.posters.thumbnail}}
-           style={styles.thumbnail}
-         />
-         <View style={styles.rightContainer}>
-           <Text style={styles.title}>{movie.title}</Text>
-           <Text style={styles.year}>{movie.year}</Text>
-         </View>
-       </View>
-     );
-   },
-
-});
-
-var styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  year: {
-    textAlign: 'center',
+var styles = React.StyleSheet.create({
+  text: {
+    color: 'black',
+    fontSize: 30,
+    margin: 80
   },
   container: {
-    flex: 1,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  thumbnail: {
-    width: 53,
-    height: 81,
-  },
-  rightContainer: {
-   flex: 1,
-  },
-  listView: {
-   paddingTop: 20,
-   backgroundColor: '#F5FCFF',
-  },
+    flex: 1
+  }
 });
+
+var sample = React.createClass({
+   render: function() {
+     var helloWorld = <Text style={styles.text}>hello world</Text>
+     return (
+       <View style={styles.container}>
+        //  {helloWorld}
+        {Game}
+       </View>
+
+      //  <Navigator
+      //    style={styles.container}
+      //    initialRoute={{
+      //      title: 'sample',
+      //      name:'sample2',index:0
+      //     //  component: Game
+      //    }}
+      //    renderScene={(route, navigator) =>
+      //       <Game
+      //         name={route.name}
+      //         onForward={() => {
+      //           var nextIndex = route.index + 1;
+      //           navigator.push({
+      //             name: 'Scene ' + nextIndex,
+      //             index: nextIndex,
+      //           });
+      //         }}
+      //         onBack={() => {
+      //           if (route.index > 0) {
+      //             navigator.pop();
+      //           }
+      //         }}
+      //       />
+      //     }
+      //    />
+
+     );
+   }
+
+});
+
 
 AppRegistry.registerComponent('sample', () => sample);
