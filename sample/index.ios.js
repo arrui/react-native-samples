@@ -34,7 +34,7 @@ class sample extends React.Component {
         style={styles.container}
         initialRoute={{
           title: 'sample',
-          component: SearchPage
+          component: Game
         }}/>
     );
   }
